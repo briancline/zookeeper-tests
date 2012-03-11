@@ -1,0 +1,4 @@
+# use with `source setenv.prof`
+
+CLASSPATH=.:$HOME/src/zookeeper-3.4.3/*:$HOME/src/zookeeper-3.4.3/lib/*:$HOME/src/zookeeper-3.4.3/conf
+
