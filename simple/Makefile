@@ -4,11 +4,7 @@ JC = javac
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 
-CLASSES = \
-	ConnectionWatcher.java \
-	CreateGroup.java \
-	JoinGroup.java \
-	ListGroup.java
+CLASSES := $(wildcard *.java)
 
 default: classes
 
