@@ -7,6 +7,8 @@ import org.apache.zookeeper.KeeperException;
 public class ConfigUpdater {
 	
 	public static final String PATH = "/config";
+	public static final Integer MAX_SLEEP = 10000;
+	public static final Integer MAX_VALUE = Integer.MAX_VALUE;
 	
 	private ActiveKeyValueStore store;
 	private Random random = new Random();
@@ -20,13 +22,12 @@ public class ConfigUpdater {
 	public void run()
 	throws InterruptedException, KeeperException {
 		while (true) {
-			String value = random.nextInt(100) + "";
+			String value = random.nextInt(MAX_VALUE) + "";
 			
-			System.out.printf("Writing...%n");
 			store.write(PATH, value);
 			System.out.printf("Set %s to %s%n", PATH, value);
 			
-			TimeUnit.SECONDS.sleep(random.nextInt(10));
+			TimeUnit.MILLISECONDS.sleep(random.nextInt(MAX_SLEEP));
 		}
 	}
 	
