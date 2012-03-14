@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.lang.InterruptedException;
 import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.data.Stat;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher.Event.EventType;
@@ -17,8 +18,9 @@ public class ConfigWatcher implements Watcher {
 	
 	public void displayConfig()
 	throws InterruptedException, KeeperException {
-		String value = store.read(ConfigUpdater.PATH, this);
-		System.out.printf("Read %s as %s%n", ConfigUpdater.PATH, value);
+		Stat stat = new Stat();
+		String value = store.read(ConfigUpdater.PATH, this, stat);
+		System.out.printf("Read %s:%d as %s%n", ConfigUpdater.PATH, stat.getVersion(), value);
 	}
 	
 	@Override
