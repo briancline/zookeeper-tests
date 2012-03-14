@@ -1,0 +1,5 @@
+# use with `source setenv.prof`
+
+export ZKROOT=$HOME/src/zookeeper-3.4.3
+export CLASSPATH=.:$ZKROOT/*:$ZKROOT/lib/*:$ZKROOT/conf
+
