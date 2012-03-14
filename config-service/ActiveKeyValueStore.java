@@ -15,6 +15,12 @@ public class ActiveKeyValueStore extends ConnectionWatcher {
 		return new String(data, CHARSET);
 	}
 	
+	public String read(String path, Watcher watcher, Stat stat)
+	throws InterruptedException, KeeperException {
+		byte[] data = zk.getData(path, watcher, stat);
+		return new String(data, CHARSET);
+	}
+	
 	public void write(String path, String value) 
 	throws InterruptedException, KeeperException {
 		Stat stat = zk.exists(path, false);
